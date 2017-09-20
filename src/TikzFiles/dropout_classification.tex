@@ -1,0 +1,93 @@
+\begin{figure}[ht!]
+\centering
+
+\scalebox{1.0}{
+\begin{tikzpicture}[auto]
+
+% operations =============================
+
+\visible<3->{
+\node[op] (x2) {};
+\node[op, above=5pt of x2] (x1) {};
+\node[op, below=5pt of x2] (x3) {};
+\node[op, above right=4pt and 16pt of x2] (h2) {};
+\node[op, above=4pt of h2] (h1) {};
+\node[op, below=4pt of h2] (h3) {};
+\node[op, below=4pt of h3] (h4) {};
+\node[op, right=32pt of x2] (o) {};
+
+% edges
+\path[tedge] (x1) edge node[pos=0.25, above=1.8pt] {} (h1);
+\path[tedge] (x1) edge node[above=1.2pt] {} (h2);
+\path[tedge] (x1) edge node[above=1.8pt] {} (h3);
+\path[tedge] (x1) edge node[above=1.8pt] {} (h4);
+
+\path[tedge] (x2) edge node[above=1.8pt] {} (h1);
+\path[tedge_dashed] (x2) edge node[above=1.8pt] {} (h2);
+\path[tedge] (x2) edge node[above=1.8pt] {} (h3);
+\path[tedge] (x2) edge node[above=1.8pt] {} (h4);
+
+\path[tedge] (x3) edge node[above=1.8pt] {} (h1);
+\path[tedge] (x3) edge node[above=1.8pt] {} (h2);
+\path[tedge_dashed] (x3) edge node[above=1.8pt] {} (h3);
+\path[tedge] (x3) edge node[above=1.0pt] {} (h4);
+
+\path[tedge_dashed] (h1) edge node[pos=0.25, above=1.8pt, right=0.1cm] {} (o);
+\path[tedge] (h2) edge node[above=1.8pt] {} (o);
+\path[tedge] (h3) edge node[above=1.8pt] {} (o);
+\path[tedge] (h4) edge node[above=1.8pt] {} (o);
+
+\node [draw=black!50, fit={(x1) (x2) (x3) (h1) (h2) (h3) (h4) (o)}] (nn) {};
+% edges
+}
+
+\node[rectangle, left=40pt of nn] (w) {\small$\textit{E} \sim \textit{Bernoulli}$};
+
+\visible<2->{
+\node[textonly, above=20pt of w] (e) {$
+   Dropout = \begin{array}{ccccccc}[& 0 & 0 & 1 & ... & 0 & ]\end{array} $};
+\path[tedge] (w) edge node[above=1.8pt] {} (e);
+}
+
+\visible<4->{
+  \path[tedge] (w) edge node[above=1.8pt] {} (nn);
+}
+
+\visible<5->{
+\node[textonly, right=40pt of nn] (y) {$\hat{y}$};
+\path[tedge] (nn) edge node[above=1.8pt] {} (y);
+}
+
+\visible<6->{
+\node[textonly, below=40pt of w] (t_text) {Get T Classifications};
+}
+
+\visible<7>{
+\node[textonly, right, below=of t_text.west,anchor=west] (a1) {$
+  Classifications = \begin{array}{ccc}[& \hat{y}_{1} & ]\end{array}
+$};
+}
+
+\visible<8>{
+\node[textonly, below=of t_text.west,anchor=west] (a1) {$
+  Classifications = \begin{array}{cccc}[& \hat{y}_{1} & \hat{y}_{2} & ]\end{array}
+$};
+}
+
+\visible<9>{
+\node[textonly, below=of t_text.west,anchor=west] (a1) {$
+  Classifications = \begin{array}{ccccc}[& \hat{y}_{1} & \hat{y}_{2} &
+  \hat{y}_{3} & ]\end{array}
+$};
+}
+
+\visible<10>{
+\node[textonly, below=of t_text.west,anchor=west] (a1) {$
+Classifications = \begin{array}{ccccccc}[& \hat{y}_{1} & \hat{y}_{2} &
+\hat{y}_{3} & ... & \hat{y}_{T} & ]\end{array}
+$};
+}
+
+\end{tikzpicture}
+} % scalebox
+\end{figure}
