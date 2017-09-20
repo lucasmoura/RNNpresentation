@@ -12,7 +12,8 @@
 \node[op, above=20pt of h2] (h1) {$h_1$};
 \node[op, below=20pt of h2] (h3) {$h_3$};
 \node[op, below=20pt of h3] (h4) {$h_4$};
-\node[op, right=90pt of x2] (y) {$\hat{y}$};
+\node[op, right=90pt of x2] (o) {$o$};
+\node[textonly, right=20pt of o] (y) {$\hat{y}$};
 
 % edges
 \path[tedge] (x1) edge node[pos=0.25, above=1.8pt] {\alert{\small $\vect{W}_{1,1}^{1}$}} (h1);
@@ -30,10 +31,12 @@
 \path[tedge] (x3) edge node[above=1.8pt] {} (h3);
 \path[tedge] (x3) edge node[above=1.0pt] {\small $\vect{W}_{3,4}^{1}$} (h4);
 
-\path[tedge] (h1) edge node[pos=0.25, above=1.8pt, right=0.1cm] {\small $\vect{W}_{1,1}^{2}$} (y);
-\path[tedge] (h2) edge node[above=1.8pt] {} (y);
-\path[tedge] (h3) edge node[above=1.8pt] {} (y);
-\path[tedge] (h4) edge node[above=1.8pt] {} (y);
+\path[tedge] (h1) edge node[pos=0.25, above=1.8pt, right=0.1cm] {\small $\vect{W}_{1,1}^{2}$} (o);
+\path[tedge] (h2) edge node[above=1.8pt] {} (o);
+\path[tedge] (h3) edge node[above=1.8pt] {} (o);
+\path[tedge] (h4) edge node[above=1.8pt] {} (o);
+
+\path[tedge] (o) edge node[above=1.8pt] {} (y);
 
 % info edges
 
