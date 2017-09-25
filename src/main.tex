@@ -22,7 +22,7 @@
 
 \begin{frame}[fragile]{Motivation}
 \begin{itemize}
-\item \alert{Deep Learning} is a growing field with state-of-the-art result in
+\item \alert{Deep Learning} is a growing field with state-of-the-art results in
     several areas.
 \vspace{0.5cm}
 \item Image Classification, Natural Language Processing
@@ -118,7 +118,7 @@
 
 \begin{frame}[fragile]{Bayesian Neural Network}
 \begin{itemize}
-\item Train such network is a costly process
+\item Training Bayesian networks is a costly process
 \vspace{0.5cm}
 \item Use techniques such as variational inference and Monte Carlo Estimation
 \end{itemize}
@@ -127,7 +127,7 @@
 \begin{frame}[fragile]{Bayesian Neural Network}
 \begin{itemize}
 \item What if we could extract uncertainty measurements from current Deep
-    Learning models if they use stachastic regularization techniques such as
+    Learning models if they use stochastic regularization techniques such as
         \alert{Dropout} ?
 \vspace{0.5cm}
 \item Uncertainty in Deep Learning (Yarin Gal, 2017)
@@ -152,7 +152,7 @@
 
 \begin{frame}[fragile]{Dropout}
 \begin{itemize}
-    \item The optimization of Neural Network using \alert{Dropout} is practicaly the same
+    \item The optimization function of Neural Networks using \alert{Dropout} is practically the same
         as the optimization function of a Network trained with \alert{Variational
         Inference}.
     \vspace{0.5cm}
@@ -163,6 +163,20 @@
 
 \begin{frame}[fragile]{Bayesian Neural Network}
     \input{TikzFiles/dropout_classification.tex}
+\end{frame}
+
+\begin{frame}[fragile]{Active Learning Uncertainty}
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[scale=0.3]{images/active_learning_uncertainty.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Active Learning Uncertainty}
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[scale=0.29]{images/active_learning_uncertainty_dropout.png}
+    \end{figure}
 \end{frame}
 
 \begin{frame}[fragile]{What's next}
