@@ -25,16 +25,8 @@
 \item \alert{Deep Learning} is a growing field with state-of-the-art results in
     several areas.
 \vspace{0.5cm}
-\item Image Classification, Natural Language Processing
+\item Image Classification, Machine Translation
 \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-    \begin{figure}[htp]
-        \centering
-        \includegraphics[scale=0.4]{images/image_classification.png}
-        \caption{Image recognition by Deep Learning model \cite{faster_r_cnn}}
-    \end{figure}
 \end{frame}
 
 \section{However...}
@@ -45,6 +37,9 @@
 \vspace{0.5cm}
 \item For the task of image classification on the ImageNet database, 1.2 million
     labeled images were used \cite{imagenet}
+\vspace{0.5cm}
+\item This restriction causes huge difficulties on applying Deep Learning
+    techniques to a wide range of problems, such as \alert{Sentiment Analysis}
 \end{itemize}
 \end{frame}
 
@@ -62,7 +57,6 @@
     \begin{figure}[htp]
         \centering
         \includegraphics[scale=0.3]{images/active_learning.png}
-        \caption{Active Learning cycle \cite{active_learning}}
     \end{figure}
 \end{frame}
 
@@ -101,6 +95,13 @@
     \end{figure}
 \end{frame}
 
+\begin{frame}[fragile]{Uncertainty measurement}
+\begin{itemize}
+\item To select informative samples, it is necessary to measure the
+    \alert{uncertainty} of the model prediction.
+\end{itemize}
+\end{frame}
+
 \begin{frame}[fragile]{Neural Network}
     \input{TikzFiles/neural_network}
 \end{frame}
@@ -120,7 +121,7 @@
 \begin{itemize}
 \item Training Bayesian networks is a costly process
 \vspace{0.5cm}
-\item Use techniques such as variational inference and Monte Carlo Estimation
+\item Use techniques such as Variational Inference and Monte Carlo Estimation
 \end{itemize}
 \end{frame}
 
@@ -128,7 +129,7 @@
 \begin{itemize}
 \item What if we could extract uncertainty measurements from current Deep
     Learning models if they use stochastic regularization techniques such as
-        \alert{Dropout} ?
+    \alert{Dropout} ?
 \vspace{0.5cm}
 \item Uncertainty in Deep Learning (Yarin Gal, 2017)
 \end{itemize}
@@ -153,43 +154,57 @@
 \begin{frame}[fragile]{Dropout}
 \begin{itemize}
     \item The optimization function of Neural Networks using \alert{Dropout} is practically the same
-        as the optimization function of a Network trained with \alert{Variational
-        Inference}.
+        as the optimization function of a Network trained with Variational
+        Inference.
     \vspace{0.5cm}
     \item Therefore it is possible to extract uncertainty measures from these
-        networks.
+        networks, a technique called \alert{Monte Carlo Dropout}.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Bayesian Neural Network}
+\begin{frame}[fragile]{Monte Carlo Dropout}
     \input{TikzFiles/dropout_classification.tex}
 \end{frame}
 
-\begin{frame}[fragile]{Active Learning Uncertainty}
-    \begin{figure}[htp]
-        \centering
-        \includegraphics[scale=0.3]{images/active_learning_uncertainty.png}
-    \end{figure}
-\end{frame}
+\section{Experimental Design}
 
-\begin{frame}[fragile]{Active Learning Uncertainty}
-    \begin{figure}[htp]
-        \centering
-        \includegraphics[scale=0.29]{images/active_learning_uncertainty_dropout.png}
-    \end{figure}
-\end{frame}
-
-\begin{frame}[fragile]{What's next}
+\begin{frame}[fragile]{Objective}
 \begin{itemize}
-    \item Use this uncertainty measure to perform active learning together with
-        sentiment analysis.
+    \item Combine Monte Carlo Dropout with Active Learning for the task of
+        Sentiment Analysis and answer the folling research questions:
+        \vspace{0.5cm}
+
+        \begin{itemize}
+        \item \alert{Q1}: On the task of sentiment analysis, can we achieve the same
+            accuracy of a standard Deep Learning model by using Active Learning
+            with uncertainty measurements, but with fewer labeled data ?
+        \item \alert{Q2}: Does modelling uncertainty in a Deep Learning model helps
+            achieving a better result when using Active Learning ?
+        \end{itemize}
     \vspace{0.5cm}
-    \item Choose which Deep Learning model to use for sentiment analysis (probably
-        LSTM)
-    \vspace{0.5cm}
-    \item Choose which selection metrics are normally used for text analysis
-        together with active learning.
 \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Dataset}
+\begin{itemize}
+    \item Large Movie Review Dataset
+    \vspace{0.5cm}
+    \item 25000 train reviews and 25000 test reviews
+    \vspace{0.5cm}
+    \item Both train and test datasets have an equal number of positive and
+        negative reviews
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Dataset}
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[scale=0.6]{images/train_positive_graph.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Experimental Design}
+    \input{TikzFiles/experimental_design.tex}
 \end{frame}
 
 \begin{frame}[allowframebreaks]{References}
