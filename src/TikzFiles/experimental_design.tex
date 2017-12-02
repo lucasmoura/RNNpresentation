@@ -1,0 +1,91 @@
+\begin{figure}[ht!]
+\centering
+
+\scalebox{1.0}{
+\begin{tikzpicture}[auto]
+
+\visible<6->{
+\node[rectangle, minimum size=15pt,
+      draw=black!70,
+      rounded corners=0.5pt,
+      fill=red!70] (activemc) {ALU};
+\path[tedge] (w) edge node[above=1.8pt] {} (activemc.west);
+}
+
+\visible<2->{
+\node[rectangle, above=60pt of activemc.west, anchor=west,
+    minimum size=15pt,
+    draw=black!70,
+    rounded corners=0.5pt,
+    fill=red!70] (lstm) {LSTM model};
+    \path[tedge] (w) edge node[above=1.8pt] {} (lstm.west);
+}
+
+\visible<4->{
+\node[textonly, right=40pt of lstm] (lstmtrain) {Use whole training set};
+\path[tedge] (lstm) edge node[above=1.8pt] {} (lstmtrain.west);
+}
+
+\visible<3->{
+\node[textonly, above=10pt of lstmtrain.west, anchor=west] (lstmstandard) {Baseline model};
+\path[tedge] (lstm) edge node[above=1.8pt] {} (lstmstandard.west);
+}
+
+\visible<5->{
+\node[textonly, below=10pt of lstmtrain.west, anchor=west] (lstmhyper) {Hyperparameters tuning};
+\path[tedge] (lstm) edge node[above=1.8pt] {} (lstmhyper.west);
+}
+
+\visible<8->{
+\node[textonly, right=80pt of activemc] (alulco) {Least Confident};
+\path[tedge] (activemc) edge node[above=1.8pt] {} (alulco.west);
+}
+
+\visible<7->{
+\node[textonly, above=10pt of alulco.west, anchor=west] (alumc) {Active Learning + MC Dropout};
+\path[tedge] (activemc) edge node[above=1.8pt] {} (alumc.west);
+}
+
+\visible<9->{
+\node[textonly, below=10pt of alulco.west, anchor=west] (aluh) {Entropy};
+\path[tedge] (activemc) edge node[above=1.8pt] {} (aluh.west);
+}
+
+\visible<10->{
+\node[textonly, below=10pt of aluh.west, anchor=west] (alumi) {Mutual Information};
+\path[tedge] (activemc) edge node[above=1.8pt] {} (alumi.west);
+}
+
+\visible<12->{
+\node[rectangle, below=60pt of activemc.west, anchor=west, minimum size=15pt,
+      draw=black!70,
+      rounded corners=0.5pt,
+      fill=red!70] (actives) {ALS};
+\path[tedge] (w) edge node[above=1.8pt] {} (actives.west);
+}
+
+\visible<14->{
+\node[textonly, right=80pt of actives] (alslco) {Least Confident};
+\path[tedge] (actives) edge node[above=1.8pt] {} (alslco.west);
+}
+
+\visible<13->{
+\node[textonly, above=10pt of alslco.west, anchor=west] (alsmc) {Active Learning + Softmax};
+\path[tedge] (actives) edge node[above=1.8pt] {} (alsmc.west);
+}
+
+\visible<15->{
+\node[textonly, below=10pt of alslco.west, anchor=west] (alsh) {Entropy};
+\path[tedge] (actives) edge node[above=1.8pt] {} (alsh.west);
+}
+
+\visible<16->{
+\node[textonly, below=10pt of alsh.west, anchor=west] (alsmi) {Mutual Information};
+\path[tedge] (actives) edge node[above=1.8pt] {} (alsmi.west);
+}
+
+\node[op, left=40pt of activemc, draw=black!50, fill=black] (w) {};
+
+\end{tikzpicture}
+} % scalebox
+\end{figure}

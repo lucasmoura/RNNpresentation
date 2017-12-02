@@ -137,31 +137,6 @@
 
 \section{Dropout}
 
-\begin{frame}[fragile]{Dropout}
-\begin{itemize}
-\item During training some weights are dropped from the network
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Dropout}
-    \input{TikzFiles/dropout_1.tex}
-\end{frame}
-
-\begin{frame}[fragile]{Dropout}
-    \input{TikzFiles/dropout_2.tex}
-\end{frame}
-
-\begin{frame}[fragile]{Dropout}
-\begin{itemize}
-    \item The optimization function of Neural Networks using \alert{Dropout} is practically the same
-        as the optimization function of a Network trained with Variational
-        Inference.
-    \vspace{0.5cm}
-    \item Therefore it is possible to extract uncertainty measures from these
-        networks, a technique called \alert{Monte Carlo Dropout}.
-\end{itemize}
-\end{frame}
-
 \begin{frame}[fragile]{Monte Carlo Dropout}
     \input{TikzFiles/dropout_classification.tex}
 \end{frame}
@@ -207,9 +182,70 @@
     \input{TikzFiles/experimental_design.tex}
 \end{frame}
 
+\begin{frame}[fragile]{Active Learning}
+    \begin{itemize}
+        \item \alert{Q1}: On the task of sentiment analysis, can we achieve the same
+            accuracy of a standard Deep Learning model by using Active Learning
+            with uncertainty measurements, but with fewer labeled data ?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Active Learning}
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[scale=0.6]{images/active_learning_comp_graph.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Active Learning}
+    \begin{itemize}
+        \item \alert{Q2}: Does modelling uncertainty in a Deep Learning model helps
+            achieving a better result when using Active Learning ?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Active Learning}
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[scale=0.6]{images/active_learning_selection_comp_graph.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Active Learning}
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[scale=0.22]{images/roadmap.png}
+    \end{figure}
+\end{frame}
+
 \begin{frame}[allowframebreaks]{References}
   \bibliography{demo}
   \bibliographystyle{abbrv}
+\end{frame}
+
+\begin{frame}[fragile]{Dropout}
+\begin{itemize}
+\item During training some weights are dropped from the network
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Dropout}
+    \input{TikzFiles/dropout_1.tex}
+\end{frame}
+
+\begin{frame}[fragile]{Dropout}
+    \input{TikzFiles/dropout_2.tex}
+\end{frame}
+
+\begin{frame}[fragile]{Dropout}
+\begin{itemize}
+    \item The optimization function of Neural Networks using \alert{Dropout} is practically the same
+        as the optimization function of a Network trained with Variational
+        Inference.
+    \vspace{0.5cm}
+    \item Therefore it is possible to extract uncertainty measures from these
+        networks, a technique called \alert{Monte Carlo Dropout}.
+\end{itemize}
 \end{frame}
 
 \end{document}
