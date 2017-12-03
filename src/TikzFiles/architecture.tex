@@ -1,0 +1,53 @@
+\begin{figure}[ht!]
+\centering
+
+\scalebox{1.0}{
+\begin{tikzpicture}[auto]
+
+\node[op] (w2) {$w_2$};
+\node[op, above=20pt of w2] (w1) {$w_1$};
+\node[op, below=20pt of w2] (w3) {$w_3$};
+
+\node[rectangle, right=20pt of w2, rounded corners=0.5pt] (embed) {Embedding};
+\path[tedge] (w1) edge node[above=1.8pt] {} (embed.west);
+\path[tedge] (w2) edge node[above=1.8pt] {} (embed.west);
+\path[tedge] (w3) edge node[above=1.8pt] {} (embed.west);
+
+
+% RNN state cell =============================
+\node[state, right=20pt of embed] (lstm) {LSTM};
+
+% edges
+\path[tedge] (embed) edge node[above=1.8pt] {} (lstm.west) ;
+\path[tedge] (lstm) edge [out=290,in=250,looseness=8, distance=50pt] node[above right] {} (lstm);
+
+\node[op, right=20pt of lstm] (x3) {};
+\node[op, above=40pt of x3] (x1) {};
+\node[op, above=10pt of x3] (x2) {};
+\node[op, below=40pt of x3] (x4) {};
+\node[op, below=10pt of x3] (x5) {};
+
+\path[tedge] (lstm) edge node[above=1.8pt] {} (x1.west);
+\path[tedge] (lstm) edge node[above=1.8pt] {} (x2.west);
+\path[tedge] (lstm) edge node[above=1.8pt] {} (x3.west);
+\path[tedge] (lstm) edge node[above=1.8pt] {} (x4.west);
+\path[tedge] (lstm) edge node[above=1.8pt] {} (x5.west);
+
+\node[op, above right=3pt and 40pt of x3] (y1) {$\hat{y}_{1}$};
+\node[op, below=20pt of y1] (y2) {$\hat{y}_{2}$};
+
+\path[tedge, -] (x1) edge node[above=1.8pt] {} (y1.west);
+\path[tedge, -] (x2) edge node[above=1.8pt] {} (y1.west);
+\path[tedge, -] (x3) edge node[above=1.8pt] {} (y1.west);
+\path[tedge, -] (x4) edge node[above=1.8pt] {} (y1.west);
+\path[tedge, -] (x5) edge node[above=1.8pt] {} (y1.west);
+
+\path[tedge, -] (x1) edge node[above=1.8pt] {} (y2.west);
+\path[tedge, -] (x2) edge node[above=1.8pt] {} (y2.west);
+\path[tedge, -] (x3) edge node[above=1.8pt] {} (y2.west);
+\path[tedge, -] (x4) edge node[above=1.8pt] {} (y2.west);
+\path[tedge, -] (x5) edge node[above=1.8pt] {} (y2.west);
+
+\end{tikzpicture}
+} % scalebox
+\end{figure}
