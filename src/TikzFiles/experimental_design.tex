@@ -36,23 +36,28 @@
 \path[tedge] (lstm) edge node[above=1.8pt] {} (lstmhyper.west);
 }
 
-\visible<8->{
-\node[textonly, right=80pt of activemc] (alulco) {Least Confident};
+\visible<9->{
+    \node[textonly, right=80pt of activemc] (alulco) {Least Confident (LC)};
 \path[tedge] (activemc) edge node[above=1.8pt] {} (alulco.west);
 }
 
-\visible<7->{
-\node[textonly, above=10pt of alulco.west, anchor=west] (alumc) {Active Learning + MC Dropout};
+\visible<8->{
+\node[textonly, above=10pt of alulco.west, anchor=west] (alumc) {MC Dropout};
 \path[tedge] (activemc) edge node[above=1.8pt] {} (alumc.west);
 }
 
-\visible<9->{
-\node[textonly, below=10pt of alulco.west, anchor=west] (aluh) {Entropy};
-\path[tedge] (activemc) edge node[above=1.8pt] {} (aluh.west);
+\visible<7->{
+\node[textonly, above=10pt of alumc.west, anchor=west] (aluname) {Active Learning + Uncertainty};
+\path[tedge] (activemc) edge node[above=1.8pt] {} (aluname.west);
 }
 
 \visible<10->{
-\node[textonly, below=10pt of aluh.west, anchor=west] (alumi) {Mutual Information};
+    \node[textonly, below=10pt of alulco.west, anchor=west] (aluh) {Entropy (H)};
+\path[tedge] (activemc) edge node[above=1.8pt] {} (aluh.west);
+}
+
+\visible<11->{
+\node[textonly, below=10pt of aluh.west, anchor=west] (alumi) {Mutual Information (I)};
 \path[tedge] (activemc) edge node[above=1.8pt] {} (alumi.west);
 }
 
@@ -64,23 +69,28 @@
 \path[tedge] (w) edge node[above=1.8pt] {} (actives.west);
 }
 
-\visible<14->{
-\node[textonly, right=80pt of actives] (alslco) {Least Confident};
+\visible<15->{
+\node[textonly, right=80pt of actives] (alslco) {Least Confident (LC)};
 \path[tedge] (actives) edge node[above=1.8pt] {} (alslco.west);
 }
 
-\visible<13->{
-\node[textonly, above=10pt of alslco.west, anchor=west] (alsmc) {Active Learning + Softmax};
+\visible<14->{
+\node[textonly, above=10pt of alslco.west, anchor=west] (alsmc) {Softmax};
 \path[tedge] (actives) edge node[above=1.8pt] {} (alsmc.west);
 }
 
-\visible<15->{
-\node[textonly, below=10pt of alslco.west, anchor=west] (alsh) {Entropy};
-\path[tedge] (actives) edge node[above=1.8pt] {} (alsh.west);
+\visible<13->{
+\node[textonly, above=10pt of alsmc.west, anchor=west] (alsname) {Active Learning + Softmax};
+\path[tedge] (actives) edge node[above=1.8pt] {} (alsname.west);
 }
 
 \visible<16->{
-\node[textonly, below=10pt of alsh.west, anchor=west] (alsmi) {Mutual Information};
+    \node[textonly, below=10pt of alslco.west, anchor=west] (alsh) {Entropy (H)};
+\path[tedge] (actives) edge node[above=1.8pt] {} (alsh.west);
+}
+
+\visible<17->{
+\node[textonly, below=10pt of alsh.west, anchor=west] (alsmi) {Mutual Information (I)};
 \path[tedge] (actives) edge node[above=1.8pt] {} (alsmi.west);
 }
 

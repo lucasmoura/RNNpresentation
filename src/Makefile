@@ -1,6 +1,6 @@
 BASE_NAME := main
 BUILD_DIR := build
-PDF_NAME := active_learning_presentation.pdf
+PDF_NAME := lucas_moura_presentation.pdf
 
 PDFLATEX_OPTIONS = -halt-on-error -aux-directory=$(BUILD_DIR) -output-directory=$(BUILD_DIR) --shell-escape
 LATEX     := latex
