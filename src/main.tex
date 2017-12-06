@@ -121,7 +121,7 @@
 \begin{itemize}
 \item Training Bayesian networks is a costly process
 \vspace{0.5cm}
-\item Use techniques such as Variational Inference and Monte Carlo Estimation
+\item Use techniques such as Variational Inference
 \end{itemize}
 \end{frame}
 
@@ -136,6 +136,31 @@
 \end{frame}
 
 \section{Dropout}
+
+\begin{frame}[fragile]{Dropout}
+\begin{itemize}
+\item During training some weights are dropped from the network
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Dropout}
+    \input{TikzFiles/dropout_1.tex}
+\end{frame}
+
+\begin{frame}[fragile]{Dropout}
+    \input{TikzFiles/dropout_2.tex}
+\end{frame}
+
+\begin{frame}[fragile]{Dropout}
+\begin{itemize}
+    \item The optimization function of Neural Networks using \alert{Dropout} is practically the same
+        as the optimization function of a Network trained with Variational
+        Inference.
+    \vspace{0.5cm}
+    \item Therefore it is possible to extract uncertainty measures from these
+        networks, a technique called \alert{Monte Carlo Dropout}.
+\end{itemize}
+\end{frame}
 
 \begin{frame}[fragile]{Monte Carlo Dropout}
     \input{TikzFiles/dropout_classification.tex}
@@ -157,20 +182,14 @@
 
 \section{Experimental Design}
 
-\begin{frame}[fragile]{Objective}
+\begin{frame}[fragile]{Research Questions}
 \begin{itemize}
-    \item Combine Monte Carlo Dropout with Active Learning for the task of
-        Sentiment Analysis and answer the folling research questions:
-        \vspace{0.5cm}
-
-        \begin{itemize}
-        \item \alert{Q1}: On the task of sentiment analysis, can we achieve the same
-            accuracy of a standard Deep Learning model by using Active Learning
-            with uncertainty measurements, but with fewer labeled data ?
-        \item \alert{Q2}: Does modelling uncertainty in a Deep Learning model helps
-            achieving a better result when using Active Learning ?
-        \end{itemize}
+    \item \alert{Q1}: On the task of sentiment analysis, can we achieve the same
+        accuracy of a standard Deep Learning model by using Active Learning
+        with uncertainty measurements, but with fewer labeled data ?
     \vspace{0.5cm}
+    \item \alert{Q2}: Does modelling uncertainty in a Deep Learning model helps
+        achieving a better result when using Active Learning ?
 \end{itemize}
 \end{frame}
 
@@ -250,29 +269,5 @@
     \end{figure}
 \end{frame}
 
-\begin{frame}[fragile]{Dropout}
-\begin{itemize}
-\item During training some weights are dropped from the network
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Dropout}
-    \input{TikzFiles/dropout_1.tex}
-\end{frame}
-
-\begin{frame}[fragile]{Dropout}
-    \input{TikzFiles/dropout_2.tex}
-\end{frame}
-
-\begin{frame}[fragile]{Dropout}
-\begin{itemize}
-    \item The optimization function of Neural Networks using \alert{Dropout} is practically the same
-        as the optimization function of a Network trained with Variational
-        Inference.
-    \vspace{0.5cm}
-    \item Therefore it is possible to extract uncertainty measures from these
-        networks, a technique called \alert{Monte Carlo Dropout}.
-\end{itemize}
-\end{frame}
 
 \end{document}
