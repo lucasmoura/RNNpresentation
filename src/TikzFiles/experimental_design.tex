@@ -70,7 +70,7 @@
 }
 
 \visible<15->{
-\node[textonly, right=80pt of actives] (alslco) {Least Confident (LC)};
+\node[textonly, right=80pt of actives] (alslco) {Best Overaçll Metric for ALU};
 \path[tedge] (actives) edge node[above=1.8pt] {} (alslco.west);
 }
 
@@ -82,16 +82,6 @@
 \visible<13->{
 \node[textonly, above=10pt of alsmc.west, anchor=west] (alsname) {Active Learning + Softmax};
 \path[tedge] (actives) edge node[above=1.8pt] {} (alsname.west);
-}
-
-\visible<16->{
-    \node[textonly, below=10pt of alslco.west, anchor=west] (alsh) {Entropy (H)};
-\path[tedge] (actives) edge node[above=1.8pt] {} (alsh.west);
-}
-
-\visible<17->{
-\node[textonly, below=10pt of alsh.west, anchor=west] (alsmi) {Mutual Information (I)};
-\path[tedge] (actives) edge node[above=1.8pt] {} (alsmi.west);
 }
 
 \node[op, left=40pt of activemc, draw=black!50, fill=black] (w) {};

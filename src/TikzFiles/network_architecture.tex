@@ -1,0 +1,44 @@
+% RNN STATE CELL ====================================
+\begin{figure}[ht!]
+\centering
+\hspace*{-1.0cm}
+\scalebox{0.5}{
+
+\begin{tikzpicture}[auto]
+
+\node[textonly] (loved) {loved};
+\node[textonly, left=80pt of loved] (really) {really};
+\node[textonly, left=80pt of really] (I) {I};
+\node[textonly, right=80pt of loved] (this) {this};
+\node[textonly, right=80pt of this] (movie) {movie};
+
+\node[block, fill=green!40, above=40pt of loved] (wordembedding3) {Word Embedding 3};
+\node[block, fill=green!40, above=40pt of really] (wordembedding2) {Word Embedding 2};
+\node[block, fill=green!40, above=40pt of I] (wordembedding1) {Word Embedding 1};
+\node[block, fill=green!40, above=40pt of this] (wordembedding4) {Word Embedding 4};
+\node[block, fill=green!40, above=40pt of movie] (wordembedding5) {Word Embedding 3};
+
+\node[block, fill=green!40, minimum width=10cm, above=40pt of wordembedding3] (lstm) {LSTM};
+\node[block, fill=green!40, minimum width=10cm, text width=9em, above=40pt of lstm] (fc) {Fully Connected};
+\node[block, fill=green!40, minimum width=10cm, above=40pt of fc] (softmax) {Softmax};
+\node[textonly, above=40pt of softmax] (prediction) {$\hat{y}$};
+
+\path[tedge] (I) edge node[pos=0.25, above=1.8pt] {} (wordembedding1);
+\path[tedge] (really) edge node[pos=0.25, above=1.8pt] {} (wordembedding2);
+\path[tedge] (loved) edge node[above=1.2pt] {} (wordembedding3);
+\path[tedge] (this) edge node[above=1.8pt] {} (wordembedding4);
+\path[tedge] (movie) edge node[above=1.8pt] {} (wordembedding5);
+
+\path[tedge] (wordembedding1) edge node[pos=0.25, above=1.8pt] {} (lstm);
+\path[tedge] (wordembedding2) edge node[pos=0.25, above=1.8pt] {} (lstm);
+\path[tedge] (wordembedding3) edge node[above=1.2pt] {} (lstm);
+\path[tedge] (wordembedding4) edge node[above=1.8pt] {} (lstm);
+\path[tedge] (wordembedding5) edge node[above=1.8pt] {} (lstm);
+
+\path[tedge] (lstm) edge node[above=1.8pt] {} (fc);
+\path[tedge] (fc) edge node[above=1.8pt] {} (softmax);
+\path[tedge] (softmax) edge node[above=1.8pt] {} (prediction);
+
+\end{tikzpicture}
+}%\scalebox
+\end{figure}

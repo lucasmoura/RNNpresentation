@@ -1,0 +1,66 @@
+%\usetikzlibrary{fit}
+
+\begin{figure}[ht!]
+\centering
+
+\scalebox{0.7}{
+\begin{tikzpicture}[auto]
+
+% operations =============================
+\node[op] (x2) {};
+\node[op, above=5pt of x2] (x1) {};
+\node[op, below=5pt of x2] (x3) {};
+\node[op, above right=4pt and 12pt of x2] (h2) {};
+\node[op, above=4pt of h2] (h1) {};
+\node[op, below=4pt of h2] (h3) {};
+\node[op, below=4pt of h3] (h4) {};
+\node[op, right=32pt of x2] (o) {};
+
+% edges
+\path[tedge] (x1) edge node[pos=0.25, above=1.8pt] {} (h1);
+\path[tedge] (x1) edge node[above=1.2pt] {} (h2);
+\path[tedge] (x1) edge node[above=1.8pt] {} (h3);
+\path[tedge] (x1) edge node[above=1.8pt] {} (h4);
+
+\path[tedge] (x2) edge node[above=1.8pt] {} (h1);
+\path[tedge] (x2) edge node[above=1.8pt] {} (h2);
+\path[tedge] (x2) edge node[above=1.8pt] {} (h3);
+\path[tedge] (x2) edge node[above=1.8pt] {} (h4);
+
+\path[tedge] (x3) edge node[above=1.8pt] {} (h1);
+\path[tedge] (x3) edge node[above=1.8pt] {} (h2);
+\path[tedge] (x3) edge node[above=1.8pt] {} (h3);
+\path[tedge] (x3) edge node[above=1.0pt] {} (h4);
+
+\path[tedge] (h1) edge node[pos=0.25, above=1.8pt, right=0.1cm] {} (o);
+\path[tedge] (h2) edge node[above=1.8pt] {} (o);
+\path[tedge] (h3) edge node[above=1.8pt] {} (o);
+\path[tedge] (h4) edge node[above=1.8pt] {} (o);
+
+\node [draw=black!50, fit={(x1) (x2) (x3) (h1) (h2) (h3) (h4) (o)}] (nn) {};
+
+\node[below left=30pt and 50pt of nn] (tdata)
+    {\includegraphics[width=.1\textwidth]{images/training_dataset}};
+
+\node[right=175pt of tdata] (udata)
+    {\includegraphics[width=.1\textwidth]{images/unlabeled_dataset}};
+
+\node[below=120pt of nn] (oracle)
+    {\includegraphics[width=.1\textwidth]{images/oracle}};
+
+\node[textonly, left=10pt of tdata] (tdatalabel) {\textbf{Training data}};
+\node[textonly, right=10pt of udata] (udatalabel) {\textbf{Unlabeled data}};
+\node[textonly, above=10pt of nn] (nnlabel) {\textbf{Machine Learning Model}};
+\node[textonly, below=10pt of oracle] (oraclelabel) {\textbf{Oracle}};
+
+\path[tedge] (tdata) edge[bend left, left] node {\textit{Learn a Model}} (nn);
+\path[tedge] (nn) edge[bend left, right] node {\textit{Classify}} (udata);
+\path[tedge] (nn) edge[bend left, right] node {\textit{Remove CEAL examples}} (tdata);
+\path[tedge] (udata) edge[bend left, right] node {\textit{Measure uncertainy}} (oracle);
+\path[tedge] (oracle) edge[bend left, left] node {\textit{Add data}} (tdata);
+\path[tedge] (udata) edge node[pos=0.5, below=1.8pt] {Add CEAL Examples} (tdata);
+
+
+\end{tikzpicture}
+} % scalebox
+\end{figure}

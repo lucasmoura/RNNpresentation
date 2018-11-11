@@ -88,6 +88,10 @@
     \end{figure}
 \end{frame}
 
+\begin{frame}[fragile]{Active Learning - CEAL}
+    \input{TikzFiles/ceal_cycle.tex}
+\end{frame}
+
 \begin{frame}[fragile]{Active Learning}
     \begin{figure}[htp]
         \centering
@@ -162,7 +166,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Monte Carlo Dropout}
+\begin{frame}[fragile]{Monte Carlo Dropout - Prediction}
     \input{TikzFiles/dropout_classification.tex}
 \end{frame}
 
@@ -182,33 +186,48 @@
 
 \section{Experimental Design}
 
+\begin{frame}[fragile]{Research Contributions}
+\begin{itemize}
+\item Evaluation of the use of Active Learning together wiht Deep Learning for the task
+      of sentiment analysis.
+\item Study of how Monte Carlo Dropout can provide uncertainty measurements for the LSTM Deep
+      Learning architecture.
+\item Practical considerations when applying Deep Learning with Active Learning
+\end{itemize}
+\end{frame}
+
 \begin{frame}[fragile]{Research Questions}
 \begin{itemize}
-    \item \alert{Q1}: On the task of sentiment analysis, can we achieve the same
-        accuracy of a standard Deep Learning model by using Active Learning
-        with uncertainty measurements, but with fewer labeled data ?
+    \item \alert{Q1}: On the task of sentiment analysis, does modelling the uncertainty measurement of the
+    model using the Monte Carlo Dropout technique help us achieve a better accuracy value in
+    the Active Learning context ?
     \vspace{0.5cm}
-    \item \alert{Q2}: Does modelling uncertainty in a Deep Learning model helps
-        achieving a better result when using Active Learning ?
+    \item \alert{Q2}: Does Monte Carlo Dropout
+    provides best uncertainty measurements then using the soft-
+    max output as a uncertainty measurement, the classical approach used in DL models ?
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Dataset}
+\begin{frame}[fragile]{Datasets}
 \begin{itemize}
     \item Large Movie Review Dataset
-    \vspace{0.5cm}
+    \begin{itemize}
     \item 25000 train reviews and 25000 test reviews
-    \vspace{0.5cm}
     \item Both train and test datasets have an equal number of positive and
         negative reviews
+    \end{itemize}
+    \vspace{0.5cm}
+    \item Subjectivity Dataset
+    \begin{itemize}
+    \item 10000 movie reviews divided into subjective and objective text.
+    \item Dataset perfectly balanced
+    \item Reviews hava an average size of 20 words
+    \end{itemize}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Dataset}
-    \begin{figure}[htp]
-        \centering
-        \includegraphics[scale=0.6]{images/train_positive_graph.png}
-    \end{figure}
+\begin{frame}[fragile]{Network Archictecture}
+    \input{TikzFiles/network_architecture}
 \end{frame}
 
 \begin{frame}[fragile]{Experimental Design}
@@ -218,66 +237,219 @@
 \begin{frame}[fragile]{Active Learning}
     \begin{figure}[htp]
         \centering
-        \includegraphics[scale=0.3]{images/active_learning_oracle.png}
-    \end{figure}
-\end{frame}
-
-\begin{frame}[fragile]{Active Learning}
-    \begin{itemize}
-        \item \alert{Q1}: On the task of sentiment analysis, can we achieve the same
-            accuracy of a standard Deep Learning model by using Active Learning
-            with uncertainty measurements, but with fewer labeled data ?
-    \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Active Learning}
-    \begin{figure}[htp]
-        \centering
         \includegraphics[scale=0.6]{images/active_learning_comp_graph.png}
     \end{figure}
 \end{frame}
 
-\begin{frame}[fragile]{Active Learning}
+\begin{frame}[fragile]{Active Learning Experiments Parameters}
+\begin{table}[]
+\centering
+\begin{tabular}{lll}
+\toprule
+Dataset & Labeled Group & Unlabeled Group\\
+\midrule
+\rowcolor{black!20}  Large Movie Review Dataset & 225 & 22275\\
+Subjectivity Dataset & 10 & 8090\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}[fragile]{Active Learning Experiments Parameters}
+\begin{table}
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{ll}
+\toprule
+Parameter & Description\\
+\midrule
+\rowcolor{black!20} Unlabeled Data Queries (Q) & The number of example we will select from the unlabeled group\\
+\rowcolor{black!20} & to be labeled by the oracle.\\
+Number of epochs (EPO) & At each AL cycle, we will train our model for a given number of\\
+& epochs. This variable defines this quantity.\\
+\rowcolor{black!20} Dropout Values (DROP) & The dropout probability for the weights in our network.\\
+Number of Active Learning Cycles (NC) & The number of AL cycles we have run for a given experiment.\\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+\end{frame}
+
+
+\section{Experiments Evaluation}
+
+\begin{frame}[fragile]{First Iteration}
     \begin{itemize}
-        \item \alert{Q2}: Does modelling uncertainty in a Deep Learning model helps
-            achieving a better result when using Active Learning ?
+        \item Use Large Movie Review Dataset
+        \item Train only a Random and ALS\_I model (Mutual Information)
+        \item Use Hyperparameters found with our baseline model
+        \item Parameters
+            \begin{itemize}
+            \item \textbf{Q} = 50
+            \item \textbf{EPO} = 16
+            \item \textbf{NC} = 50
+            \end{itemize}
+        \item Random and ALS\_I curve are almost identical
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Active Learning}
-    \begin{figure}[htp]
-        \centering
-        \includegraphics[scale=0.6]{images/active_learning_selection_comp_graph.png}
-    \end{figure}
+\begin{frame}[fragile]{Second Iteration}
+\begin{itemize}
+    \item Increase number of epochs in experiments
+\end{itemize}
 \end{frame}
 
-\section{Partial Results}
+\begin{frame}[fragile]{Second Iteration}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/acl_n200_comparison}
+\end{figure}
 
-\begin{frame}[fragile]{LSTM model}
-    \begin{figure}[htp]
-        \centering
-        \includegraphics[scale=0.6]{images/parcial_results.png}
-    \end{figure}
+\hspace{1.5cm} $\bullet$ \textbf{Q} = 50 \hspace{1cm} $\bullet$ \textbf{EPO} = 200 \hspace{1cm} $\bullet$ \textbf{NC} = 50
 \end{frame}
 
-\section{Roadmap}
+\begin{frame}[fragile]{Third Iteration}
+\begin{itemize}
+    \item Decrease number of unlabeled examples added to training dataset
+    \item Decrease number of epochs
+\end{itemize}
+\end{frame}
 
-\begin{frame}[fragile]{Roadmap}
-    \begin{figure}[htp]
-        \centering
-        \includegraphics[scale=0.22]{images/roadmap.png}
-    \end{figure}
+\begin{frame}[fragile]{Third Iteration}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/acl_n150_q10_comparison}
+\end{figure}
+
+\hspace{0.5cm} $\bullet$ \textbf{Q} = 10 \hspace{0.5cm} $\bullet$ \textbf{EPO} = 150 \hspace{0.5cm}
+$\bullet$ \textbf{NC} = 50 \hspace{0.5cm} \textbf{DROP} = 0.5
+\end{frame}
+
+\begin{frame}[fragile]{Third Iteration}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/acl_n150_q10_std_comparison}
+\end{figure}
+
+\hspace{0.5cm} $\bullet$ \textbf{Q} = 10 \hspace{0.5cm} $\bullet$ \textbf{EPO} = 150 \hspace{0.5cm}
+$\bullet$ \textbf{NC} = 50 \hspace{0.5cm} \textbf{DROP} = 0.5
+\end{frame}
+
+\begin{frame}[fragile]{Fourth Iteration}
+\begin{itemize}
+    \item Compare all metrics
+    \item Use CEAL approach
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Fourth Iteration}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/acl_n150_q10_full_comparison}
+\end{figure}
+
+\hspace{0.5cm} $\bullet$ \textbf{Q} = 10 \hspace{0.5cm} $\bullet$ \textbf{EPO} = 150 \hspace{0.5cm} $\bullet$ \textbf{NC} = 100 \hspace{0.5cm} \textbf{DROP} = 0.5
+\end{frame}
+
+\begin{frame}[fragile]{Fourth Iteration}
+    \input{TikzFiles/ceal_cycle.tex}
+\end{frame}
+
+\begin{frame}[fragile]{Fourth Iteration}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/acl_n150_q10_ceal_comparison}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[fragile]{Fifth Iteration}
+\begin{itemize}
+    \item Compare softmax metric
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Fifth Iteration}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/acl_n150_q10_softmax_bald_comparison}
+\end{figure}
+
+\hspace{0.5cm} $\bullet$ \textbf{Q} = 10 \hspace{0.5cm} $\bullet$ \textbf{EPO} = 150 \hspace{0.5cm} $\bullet$ \textbf{NC} = 100 \hspace{0.5cm} \textbf{DROP} = 0.5
+\end{frame}
+
+\begin{frame}[fragile]{Sixth Iteration}
+\begin{itemize}
+    \item Use Subjectivity Dataset
+    \item Compare all metrics
+    \item Use CEAL approach
+    \item Make softmax comparison
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Sixth Iteration}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/subj_n150_q10_full_comparison}
+\end{figure}
+
+\hspace{0.5cm} $\bullet$ \textbf{Q} = 10 \hspace{0.5cm} $\bullet$ \textbf{EPO} = 150 \hspace{0.5cm} $\bullet$ \textbf{NC} = 400 \hspace{0.5cm} \textbf{DROP} = 0.5
+\end{frame}
+
+\begin{frame}[fragile]{Sixth Iteration}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/subj_n150_q10_ceal_comparison}
+\end{figure}
+
+\hspace{0.5cm} $\bullet$ \textbf{Q} = 10 \hspace{0.5cm} $\bullet$ \textbf{EPO} = 150 \hspace{0.5cm} $\bullet$ \textbf{NC} = 400 \hspace{0.5cm} \textbf{DROP} = 0.5
+\end{frame}
+
+\begin{frame}[fragile]{Sixth Iteration}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/subj_n150_q10_softmax_bald_comparison}
+\end{figure}
+
+\hspace{0.5cm} $\bullet$ \textbf{Q} = 10 \hspace{0.5cm} $\bullet$ \textbf{EPO} = 150 \hspace{0.5cm} $\bullet$ \textbf{NC} = 400 \hspace{0.5cm} \textbf{DROP} = 0.5
+\end{frame}
+
+\section{Conclusion}
+
+\begin{frame}[fragile]{Conclusion}
+\begin{itemize}
+\item Measuring the uncertainty of sample using the Monte Carlo Dropout has created better
+      accuracy curves than using both random and softmax.
+\item We have positive results for both of our research questions
+\item Not consistent result for both datasets
+\end{itemize}
+\end{frame}
+
+\section{However}
+
+\begin{frame}[fragile]{Active Learning Problems}
+\begin{itemize}
+\item LSTM is a bad archictecture for Active Learning
+\item Retraining Deep Learning algorithms each cycle does not scale
+\item Active Learning is biased approach
+\item Feel engineering approaches for Active Learning
+\item Costly framework and though to apply it to practical problems
+\item Huge number of variables to monitor
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Future Work}
+\begin{itemize}
+\item Explore CEAL framework with Monte Carlo Dropout for other areas, such as image recognition
+\item Evaluate more Active Learning parameters
+\item Monitor the types of sentences the model is choosing from the unlabeled group
+\item \alert{Engineering work}
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{References}
   \bibliography{demo}
   \bibliographystyle{abbrv}
-\end{frame}
-
-\section{Backup Slides}
-
-\begin{frame}[fragile]{Architecture}
-    \input{TikzFiles/architecture.tex}
 \end{frame}
 
 \end{document}

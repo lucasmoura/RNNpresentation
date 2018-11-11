@@ -1,0 +1,62 @@
+\begin{figure}
+
+\scalebox{1.0}{
+\begin{tikzpicture}[transform canvas={scale=0.65}]
+
+% operations =============================
+\node[textonly] (l3){$[0.2346 0.1334 ... 0.3463 0.1236]$};
+\node[textonly, above=5pt of l3] (l2){$[0.7556 0.2353 ... 0.5435 0.1274]$};
+\node[textonly, above=5pt of l2] (l1){$[0.1235 0.3454 ... 0.6253 0.9845]$};
+\node[textonly, below=5pt of l3] (l4){$[0.8934 0.1764 ... 0.1263 0.5672]$};
+\node[textonly, below=5pt of l4] (l5){$[0.4322 0.1245 ... 0.8439 0.1448]$};
+
+\node [draw=black!50, fit={(l1) (l2) (l3) (l4) (l5)}] (embedding) {};
+
+\node[textonly, left=20pt of embedding] (word) {$[1, 20, 131, 42, 58, 12]$};
+
+\node[textonly, above=2pt of embedding] (embeddingtext) {Embedding matrix: V X D};
+
+% operations =============================
+\node[op, right=200pt of word] (x2) {$x_2$};
+\node[op, above=20pt of x2] (x1) {$x_1$};
+\node[op, below=20pt of x2] (x3) {$x_3$};
+\node[op, above right=10pt and 40pt of x2] (h2) {$h_2$};
+\node[op, above=20pt of h2] (h1) {$h_1$};
+\node[op, below=20pt of h2] (h3) {$h_3$};
+\node[op, below=20pt of h3] (h4) {$h_4$};
+\node[op, right=90pt of x2] (o) {$o$};
+\node[textonly, right=20pt of o] (y) {$\hat{y}$};
+
+% edges
+\path[tedge] (x1) edge node[pos=0.25, above=1.8pt] {} (h1);
+\path[tedge] (x1) edge node[above=1.2pt] {} (h2);
+\path[tedge] (x1) edge node[above=1.8pt] {} (h3);
+\path[tedge] (x1) edge node[above=1.8pt] {} (h4);
+
+\path[tedge] (x2) edge node[above=1.8pt] {} (h1);
+\path[tedge] (x2) edge node[above=1.8pt] {} (h2);
+\path[tedge] (x2) edge node[above=1.8pt] {} (h3);
+\path[tedge] (x2) edge node[above=1.8pt] {} (h4);
+
+\path[tedge] (x3) edge node[above=1.8pt] {} (h1);
+\path[tedge] (x3) edge node[above=1.8pt] {} (h2);
+\path[tedge] (x3) edge node[above=1.8pt] {} (h3);
+\path[tedge] (x3) edge node[above=1.0pt] {} (h4);
+
+\path[tedge] (h1) edge node[pos=0.25, above=1.8pt, right=0.1cm] {} (o);
+\path[tedge] (h2) edge node[above=1.8pt] {} (o);
+\path[tedge] (h3) edge node[above=1.8pt] {} (o);
+\path[tedge] (h4) edge node[above=1.8pt] {} (o);
+
+\path[tedge] (o) edge node[above=1.8pt] {} (y);
+\node [draw=black!50, fit={(x1) (x2) (x3) (h1) (h2) (h3) (h4) (o)}] (net) {};
+
+% edges
+\path[tedge] (word) edge node[above=1.2pt] {} (embedding);
+\path[tedge] (embedding) edge node[above=1.2pt] {$1 X D$} (net);
+% info edges
+
+
+\end{tikzpicture}
+} % scalebox
+\end{figure}
