@@ -188,10 +188,10 @@
 
 \begin{frame}[fragile]{Research Contributions}
 \begin{itemize}
-\item Evaluation of the use of Active Learning together wiht Deep Learning for the task
-      of sentiment analysis.
-\item Study of how Monte Carlo Dropout can provide uncertainty measurements for the LSTM Deep
-      Learning architecture.
+\item An intrinsic comparison of Monte Carlo Dropout with random sampling strategies for the
+Active Learning framework for the task of sentiment analysis.
+\item An intrinsic comparison of Monte Carlo Dropout with the softmax uncertainty measurement
+for the Active Learning framework for the task of sentiment analysis
 \item Practical considerations when applying Deep Learning with Active Learning
 \end{itemize}
 \end{frame}
@@ -203,9 +203,15 @@
     the Active Learning context ?
     \vspace{0.5cm}
     \item \alert{Q2}: Does Monte Carlo Dropout
-    provides best uncertainty measurements then using the soft-
-    max output as a uncertainty measurement, the classical approach used in DL models ?
+    provides best uncertainty measurements then using the softmax output as a uncertainty measurement, the classical approach used in DL models ?
 \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Active Learning}
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[scale=0.6]{images/active_learning_comp_graph.png}
+    \end{figure}
 \end{frame}
 
 \begin{frame}[fragile]{Datasets}
@@ -255,6 +261,7 @@ Subjectivity Dataset & 10 & 8090\\
 \end{table}
 \end{frame}
 
+
 \begin{frame}[fragile]{Active Learning Experiments Parameters}
 \begin{table}
 \centering
@@ -280,16 +287,16 @@ Number of Active Learning Cycles (NC) & The number of AL cycles we have run for 
 
 \begin{frame}[fragile]{First Iteration}
     \begin{itemize}
-        \item Use Large Movie Review Dataset
-        \item Train only a Random and ALS\_I model (Mutual Information)
-        \item Use Hyperparameters found with our baseline model
+        \item Validate proposed model
+        \item Find Hyperparameters
         \item Parameters
             \begin{itemize}
-            \item \textbf{Q} = 50
-            \item \textbf{EPO} = 16
-            \item \textbf{NC} = 50
+            \item \textbf{Q (Number of data added to training dataset)} = 50
+            \item \textbf{EPO (Number of Epochs)} = 16
+            \item \textbf{NC (Number of Active Learning Cycles)} = 50
             \end{itemize}
-        \item Random and ALS\_I curve are almost identical
+        \item Only one ALU model created (ALU\_I)
+        \item Random and ALU\_I curve are almost identical
     \end{itemize}
 \end{frame}
 
@@ -312,6 +319,7 @@ Number of Active Learning Cycles (NC) & The number of AL cycles we have run for 
 \begin{itemize}
     \item Decrease number of unlabeled examples added to training dataset
     \item Decrease number of epochs
+    \item Increase Dropour values
 \end{itemize}
 \end{frame}
 
@@ -432,7 +440,7 @@ $\bullet$ \textbf{NC} = 50 \hspace{0.5cm} \textbf{DROP} = 0.5
 \item LSTM is a bad archictecture for Active Learning
 \item Retraining Deep Learning algorithms each cycle does not scale
 \item Active Learning is biased approach
-\item Feel engineering approaches for Active Learning
+\item Need engineering approaches for Active Learning
 \item Costly framework and though to apply it to practical problems
 \item Huge number of variables to monitor
 \end{itemize}
